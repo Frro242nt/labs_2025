@@ -3,76 +3,73 @@
 
 using namespace std;
 
-// Функция для склеивания двух чисел
-int concatenateNumbers(int a, int b) {
-    cout << "исп. функция склеивания 2х чисел" << endl;
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРєР»РµРёРІР°РЅРёСЏ РґРІСѓС… С‡РёСЃРµР»
+int connect(int a, int b) {
+    cout << "use the 2-number contraction function" << endl;
 
-    int temp = b;          // Сохраняем второе число во временную переменную
-    int multiplier = 1;    // Множитель для определения разрядов
+    int t = b;
+    int mult = 1;
 
-    // Считаем сколько разрядов у второго числа
-    while (temp >= 10) {
-        temp /= 10;        // Убираем последнюю цифру
-        multiplier *= 10;  // Увеличиваем множитель в 10 раз
+    // РЎС‡РёС‚Р°РµРј СЃРєРѕР»СЊРєРѕ СЂР°Р·СЂСЏРґРѕРІ Сѓ РІС‚РѕСЂРѕРіРѕ С‡РёСЃР»Р°
+    while (t > 0) {
+        mult *= 10;
+        t /= 10;
     }
 
-    // Склеиваем: первое число * множитель + второе число
-    return a * multiplier + b;
+    return a * mult + b;
 }
 
-// Функция для нахождения противоположного числа
-int oppositeNumber(int a) {
-    cout << "исп. функция противоположного числа" << endl;
-    return -a;  // Возвращаем число с противоположным знаком
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРіРѕ С‡РёСЃР»Р°
+int opposite(int a) {
+    cout << "use the opposite number function" << endl;
+    return -a;
 }
 
 int main() {
-    int choice;  // Переменная для выбора пункта меню
-    int a, b, c; // Переменные для трех чисел
+    int a, b, c;
 
-    cout << "Выберите пункт (1 или 2): ";
-    cin >> choice;  // Читаем выбор пользователя
+        cout << "Enter three integers: ";
+        cin >> a >> b >> c;
 
-    if (choice == 1) {
-        cout << "Введите три целых числа: ";
-        cin >> a >> b >> c;  // Читаем три числа
-
-        // Подсчет ненулевых чисел (true = 1, false = 0)
         int count = (a != 0) + (b != 0) + (c != 0);
+        cout << "Discovered " << count << " non-zero numbers" << endl;
 
         if (count == 2) {
-            // Находим два ненулевых числа
+            // РќР°С…РѕРґРёРј РґРІР° РЅРµРЅСѓР»РµРІС‹С… С‡РёСЃР»Р°
             int first = 0, second = 0;
-            if (a != 0) {
+
+            if (a != 0 && b != 0) {
                 first = a;
-                if (b != 0) second = b;
-                else second = c;
+                second = b;
             }
-            else if (b != 0) {
+            else if (a != 0 && c != 0) {
+                first = a;
+                second = c;
+            }
+            else if (b != 0 && c != 0) {
                 first = b;
                 second = c;
             }
 
-            // Вызываем функцию склеивания и выводим результат
-            cout << "Результат: " << concatenateNumbers(first, second) << endl;
+            cout << "Result: " << connect(first, second) << endl;
         }
         else if (count == 1) {
-            // Находим ненулевое число с помощью тернарных операторов
-            int num = (a != 0) ? a : ((b != 0) ? b : c);
+            // РќР°С…РѕРґРёРј РЅРµРЅСѓР»РµРІРѕРµ С‡РёСЃР»Рѕ
+            int num = 0;
+            if (a != 0) {
+                num = a;
+            }
+            else if (b != 0) {
+                num = b;
+            }
+            else {
+                num = c;
+            }
 
-            // Вызываем функцию противоположного числа и выводим результат
-            cout << "Результат: " << oppositeNumber(num) << endl;
+            cout << "Result: " << opposite(num) << endl;
         }
         else {
-            cout << "Нет чисел для обработки" << endl;  // Все числа нулевые
+            cout << "No numbers to process" << endl;
         }
-    }
-    else if (choice == 2) {
-        cout << "Пункт 2" << endl;  // Заглушка для второго пункта
-    }
-    else {
-        cout << "Неверный выбор!" << endl;  // Некорректный ввод
-    }
-
-    return 0;  // Завершение программы
+    return 0;
 }
