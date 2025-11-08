@@ -1,41 +1,41 @@
 #include <iostream>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 
-// Функция для склеивания двух чисел
-int connect(int a, int b) {
-    cout << "use the 2-number contraction function" << endl;
-
+// Перегруженная функция для двух чисел
+int f(int a, int b) {
+    cout << "A function is used to combine two numbers." << endl;
     int t = b;
     int mult = 1;
-
-    // Считаем сколько разрядов у второго числа
     while (t > 0) {
         mult *= 10;
         t /= 10;
     }
-
     return a * mult + b;
 }
-
-// Функция для нахождения противоположного числа
-int opposite(int a) {
-    cout << "use the opposite number function" << endl;
+// Перегруженная функция для одного числа - противоположное число
+int f(int a) {
+    cout << "The function of the opposite number is used" << endl;
     return -a;
 }
-
 int main() {
+    int choice;
     int a, b, c;
 
+    cout << "Select point (1 or 2): ";
+    cin >> choice;
+
+    if (choice == 1 || choice == 2) {
         cout << "Enter three integers: ";
         cin >> a >> b >> c;
 
         int count = (a != 0) + (b != 0) + (c != 0);
-        cout << "Discovered " << count << " non-zero numbers" << endl;
+        cout << "Detected " << count << " non-zero numbers" << endl;
 
         if (count == 2) {
-            // Находим два ненулевых числа
+
             int first = 0, second = 0;
 
             if (a != 0 && b != 0) {
@@ -51,10 +51,9 @@ int main() {
                 second = c;
             }
 
-            cout << "Result: " << connect(first, second) << endl;
+            cout << "Result: " << f(first, second) << endl;
         }
         else if (count == 1) {
-            // Находим ненулевое число
             int num = 0;
             if (a != 0) {
                 num = a;
@@ -65,11 +64,15 @@ int main() {
             else {
                 num = c;
             }
-
-            cout << "Result: " << opposite(num) << endl;
+            cout << "Result: " << f(num) << endl;
         }
         else {
-            cout << "No numbers to process" << endl;
+            cout << "There are no numbers to process" << endl;
         }
+    }
+    else {
+        cout << "Wrong choice!" << endl;
+    }
+
     return 0;
 }
