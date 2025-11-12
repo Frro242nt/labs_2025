@@ -4,8 +4,6 @@
 
 using namespace std;
 
-//Пункт 2
-
 void print() {
     cout << "Data types:\n";
 
@@ -42,4 +40,5 @@ int main() {
     print();
     calc();
     return 0;
+
 }
